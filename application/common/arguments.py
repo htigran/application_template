@@ -13,5 +13,3 @@ class Arguments(object):
 
         args = parser.parse_args()
         self.__dict__.update(vars(args))
-        # self.args = args
-        # self.args = vars(args)
