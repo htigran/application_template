@@ -1,11 +1,15 @@
+"""A genneric application argument parsing class
+"""
 import argparse
 
-class Arguments(object):
+class Arguments(object): # pylint: disable=too-few-public-methods
+    """ Encapsulates argumet parsing related functionality.
+    """
 
     def __init__(self):
         parser = argparse.ArgumentParser()
         parser.add_argument("-c",
-                            "--config_file",
+                            "--config-file",
                             type=str,
                             action="store",
                             required=True,
