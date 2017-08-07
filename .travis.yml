@@ -9,25 +9,18 @@ os:
     linux
 
 install:
- # install latest LCOV (1.9 was failing for me) [1]
-  - cd ${TRAVIS_BUILD_DIR}
-  - wget http://ftp.de.debian.org/debian/pool/main/l/lcov/lcov_1.11.orig.tar.gz
-  - tar xf lcov_1.11.orig.tar.gz
-  - sudo make -C lcov-1.11/ install
-  # install lcov to coveralls conversion + upload tool
-  - gem install coveralls-lcov
-  - lcov --version
+  - pip install -e . --use-mirrors
 
 before_script:
-  - cd ${TRAVIS_BUILD_DIR}
-  - lcov --directory . --zerocounters
+  - pip install -r test_requirements.txt --use-mirrors
+  - git clone https://github.com/z4r/python-coveralls-example.git
+  - cd python-coveralls-example
+  - git checkout -qf 17b8119796516195527dcb4f454a2ebd41d60244
+  - py.test example/tests.py --cov=example
+  - cd -
 
 script:
-    make run
+  - py.test application/my_app.py --doctest-modules --pep8 coveralls -v --cov coveralls --cov-report term-missing
 
 after_success:
-  - cd ${TRAVIS_BUILD_DIR}
-  - lcov --directory . --capture --output-file coverage.info
-  - lcov --remove coverage.info 'tests/*' '/usr/*' --output-file coverage.info
-  - lcov --list coverage.info
-  - coveralls-lcov --repo-token=${COVERALLS_TOKEN} coverage.info
+  - coveralls
