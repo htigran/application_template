@@ -16,7 +16,7 @@ before_script:
 
 script:
   - coverage run application/my_app.py -c application/config/my_app.conf
-  - nosetests
+  - nosetests application/tests/common/
   - pylint application/common
 
 after_success:
