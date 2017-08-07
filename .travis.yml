@@ -9,15 +9,15 @@ os:
     linux
 
 install:
-  - pip install -e .
-
-before_script:
   - pip install -r test_requirements.txt
   - git clone https://github.com/z4r/python-coveralls-example.git
   - cd python-coveralls-example
   - git checkout -qf 17b8119796516195527dcb4f454a2ebd41d60244
   - py.test example/tests.py --cov=example
   - cd -
+
+before_script:
+  - ls
 
 script:
   - py.test application/my_app.py --doctest-modules --pep8 coveralls -v --cov coveralls --cov-report term-missing
