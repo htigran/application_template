@@ -9,13 +9,15 @@ os:
     linux
 
 install:
-  - pip install -r test_requirements.txt
+  - pip install -r test-requirements.txt
 
 before_script:
   - ls
 
 script:
   - coverage run application/my_app.py -c application/config/my_app.conf
+  - nosetest
+  - pylint application/common
 
 after_success:
   - coveralls

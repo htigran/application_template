@@ -1,6 +1,8 @@
 pytest
 pytest-pep8
 pytest-cov
+nose 
+pylint
 #httpretty
 git+https://github.com/melor/HTTPretty.git@py33
 python-coveralls
