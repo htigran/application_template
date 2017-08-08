@@ -6,3 +6,5 @@ pylint
 #httpretty
 git+https://github.com/melor/HTTPretty.git@py33
 python-coveralls
+coverage
+unittest2
