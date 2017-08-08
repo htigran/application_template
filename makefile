@@ -4,7 +4,7 @@
 VENV_DIR := venv
 ACTIVATE := $(VENV_DIR)/bin/activate
 PIP      := $(VENV_DIR)/bin/pip
-INSTALLER:= $(shell python -mplatform | grep -qi Ubuntu && echo "apt-get --assume-yes sinstall" || echo "yum install -y")
+INSTALLER:= $(shell python -mplatform | grep -qi centos && echo "yum install -y" || echo "apt-get --assume-yes sinstall")
 
 run:
 	test -f $(ACTIVATE) \
@@ -13,7 +13,6 @@ run:
 
 venv:
 	sudo $(INSTALLER) python-virtualenv
-	rm -fr $(VENV_DIR)
 	virtualenv $(VENV_DIR)
 	source $(ACTIVATE) \
 	    && $(PIP) install -r requirements.txt \
