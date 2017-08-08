@@ -4,6 +4,7 @@
 VENV_DIR := venv
 ACTIVATE := $(VENV_DIR)/bin/activate
 PIP      := $(VENV_DIR)/bin/pip
+INSTALLER:= $(shell python -mplatform | grep -qi Ubuntu && echo "apt-get --assume-yes sinstall" || echo "yum install -y")
 
 run:
 	test -f $(ACTIVATE) \
@@ -11,7 +12,7 @@ run:
 	    python application/my_app.py -c application/config/my_app.conf
 
 venv:
-	sudo yum install -y python-virtualenv
+	sudo $(INSTALLER) python-virtualenv
 	rm -fr $(VENV_DIR)
 	virtualenv $(VENV_DIR)
 	source $(ACTIVATE) \
