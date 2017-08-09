@@ -5,6 +5,7 @@ VENV_DIR := venv
 ACTIVATE := $(VENV_DIR)/bin/activate
 PIP      := $(VENV_DIR)/bin/pip
 INSTALLER:= $(shell python -mplatform | grep -qi centos && echo "yum install -y" || echo "apt-get --assume-yes install")
+SHELL    := /bin/bash
 
 run:
 	test -f $(ACTIVATE) \
