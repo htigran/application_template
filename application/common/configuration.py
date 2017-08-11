@@ -2,7 +2,8 @@
 """
 from ConfigParser import RawConfigParser
 
-class Configuration(object): # pylint: disable=too-few-public-methods
+
+class Configuration(object):
     """ Encapsulates configuration related functionality.
     """
 
@@ -11,7 +12,6 @@ class Configuration(object): # pylint: disable=too-few-public-methods
         parser.read(config_file)
 
         self.parse(parser)
-
 
     def parse(self, parser):
         """

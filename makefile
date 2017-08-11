@@ -8,9 +8,11 @@ INSTALLER:= $(shell python -mplatform | grep -qi centos && echo "yum install -y"
 SHELL    := /bin/bash
 
 run:
+	rm test.log
 	test -f $(ACTIVATE) \
 	    && source $(ACTIVATE); \
 	    python application/my_app.py -c application/config/my_app.conf
+	cat test.log
 
 venv:
 	sudo $(INSTALLER) python-virtualenv

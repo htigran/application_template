@@ -17,6 +17,13 @@ class MyApp(Application):
         """
         super(MyApp, self).__init__()
 
+    def test_logger(self):
+        self.logger.info("INFO: bla bla")
+        self.logger.warning("WARNING: bla bla")
+        self.logger.error("ERROR: bla bla")
+        self.logger.critical("CRITICAL: bla bla")
+        self.logger.exception("EXCEPTION: bla bla")
+
     def run(self):
         """
         Run the application
@@ -27,6 +34,8 @@ class MyApp(Application):
 
         print "\n### Application configuration ###\n"
         print vars(self.config)
+
+        self.test_logger()
 
 
 if __name__ == "__main__":

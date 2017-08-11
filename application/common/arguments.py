@@ -2,7 +2,8 @@
 """
 import argparse
 
-class Arguments(object): # pylint: disable=too-few-public-methods
+
+class Arguments(object):
     """ Encapsulates argumet parsing related functionality.
     """
 
