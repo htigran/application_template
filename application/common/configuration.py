@@ -1,29 +1,24 @@
 """A genneric application configuration reading class
 """
+
 from ConfigParser import RawConfigParser
 
 
-class Configuration(object):
-    """ Encapsulates configuration related functionality.
+def configuration_parser(config_file):
     """
+    Parse given configuration file in a map
 
-    def __init__(self, config_file):
-        parser = RawConfigParser()
-        parser.read(config_file)
+    :param config_file: configuration file to be parsed
 
-        self.parse(parser)
+    :return: a map containing configuration sections as keys and configuratino
+             items as values
 
-    def parse(self, parser):
-        """
-        parses configuration from given parser and updates self with
-        the config items and their values
-        :param parser: parser to get data from
-        :return: None
-        """
-        config = {}
-        for section in parser.sections():
-            config[section] = {}
-            for key, val in parser.items(section):
-                config[section][key] = val
+    """
+    parser = RawConfigParser()
+    parser.read(config_file)
 
-        self.__dict__.update(config)
+    config = {}
+    for section in parser.sections():
+        config[section] = {conf: val for conf, val in parser.items(section)}
+
+    return config

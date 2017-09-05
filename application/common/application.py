@@ -1,11 +1,8 @@
 """A genneric application base class
 """
-import os
-import logging
-from logging.handlers import TimedRotatingFileHandler
-
-from common.arguments import Arguments
-from common.configuration import Configuration
+from common.arguments import argument_parser
+from common.configuration import configuration_parser
+from common.logger import create_timed_rotating_log
 
 
 class Application(object):
@@ -13,27 +10,20 @@ class Application(object):
     """
 
     def __init__(self):
+        """ Initialize the application
+             * Parse command line arguments
+             * Parse configuration file
+             * Create logger
         """
-        """
-        self.args = Arguments()
-        config = self.args.config_file
-        self.config = Configuration(config)
-        self.logger = self.create_timed_rotating_log()
 
-    def create_timed_rotating_log(self):
-        """ Create a timed rotating logger and return the isntance
-        """
-        logger = logging.getLogger("Rotating Log")
-        levels = [logging.NOTSET, logging.DEBUG, logging.INFO, logging.WARNING,
-                  logging.ERROR, logging.CRITICAL]
-        level_index = int(self.config.logger['level'])
-        logger.setLevel(levels[level_index])
+        # arguments
+        self.args = argument_parser()
 
-        path = os.path.abspath(self.config.logger['file'])
-        handler = TimedRotatingFileHandler(path,
-                                           when="m",
-                                           interval=1,
-                                           backupCount=5)
-        logger.addHandler(handler)
+        # config
+        config_file = self.args['config_file']
+        self.config = configuration_parser(config_file)
 
-        return logger
+        # logger
+        log_file = self.config['logger']['file']
+        log_level = self.config['logger']['level']
+        self.logger = create_timed_rotating_log(log_file, log_level)

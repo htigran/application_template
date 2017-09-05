@@ -3,18 +3,23 @@
 import argparse
 
 
-class Arguments(object):
-    """ Encapsulates argumet parsing related functionality.
+def define_arguments(parser):
+    """ Define command line arguments
     """
+    parser.add_argument("-c",
+                        "--config-file",
+                        type=str,
+                        action="store",
+                        required=True,
+                        help="path to config file")
 
-    def __init__(self):
-        parser = argparse.ArgumentParser()
-        parser.add_argument("-c",
-                            "--config-file",
-                            type=str,
-                            action="store",
-                            required=True,
-                            help="path to config file")
 
-        args = parser.parse_args()
-        self.__dict__.update(vars(args))
+def argument_parser():
+    """ Parses command line arguments
+
+        :returns a map of argument name:values
+    """
+    parser = argparse.ArgumentParser()
+    define_arguments(parser)
+    args = parser.parse_args()
+    return vars(args)

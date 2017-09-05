@@ -2,6 +2,7 @@
 This is a sample application
 """
 
+from pprint import pprint as pp
 from common.application import Application
 
 
@@ -11,13 +12,9 @@ class MyApp(Application):
     command line arguments handling and configuratoin file hadling
     """
 
-    def __init__(self):
-        """
-        Need to call supers' __init__
-        """
-        super(MyApp, self).__init__()
-
     def test_logger(self):
+        """ Simple logger test
+        """
         self.logger.info("INFO: bla bla")
         self.logger.warning("WARNING: bla bla")
         self.logger.error("ERROR: bla bla")
@@ -25,15 +22,14 @@ class MyApp(Application):
         self.logger.exception("EXCEPTION: bla bla")
 
     def run(self):
-        """
-        Run the application
+        """ Run the application
         """
 
         print "\n### Application arguments ###\n"
-        print vars(self.args)
+        pp(self.args)
 
         print "\n### Application configuration ###\n"
-        print vars(self.config)
+        pp(self.config)
 
         self.test_logger()
 
