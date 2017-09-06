@@ -39,5 +39,11 @@ clean:
 	rm -fr venv logs
 
 
+vim:
+	@test -f $(ACTIVATE) \
+	    && source $(ACTIVATE); \
+	    PYTHONPATH=`pwd`/application vim
+
+
 .PHONY: venv run
 

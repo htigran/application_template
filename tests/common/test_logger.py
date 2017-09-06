@@ -1,39 +1,10 @@
 #!/usr/bin/env python
 """ Test the application logger
 """
-import os
-import sys
-import tempfile
 import mock
 import unittest2 as unittest
 from testfixtures import LogCapture
-from common.application import Application
-
-
-def config_file_generator(log_level):
-    """ generates a config file with given arguments
-    """
-
-    config_content = "\n".join(["[main]",
-                                "user = tiko",
-                                "",
-                                "[logger]",
-                                "file = logs/test.log",
-                                "",
-                                "level = {level}".format(level=log_level)])
-    with tempfile.NamedTemporaryFile(delete=False) as temp:
-        temp.write(config_content)
-        return temp.name
-
-
-def create_application(log_level=1):
-    """ Setup test suit
-    """
-    config_file = config_file_generator(log_level)
-    sys.argv = ['test', '-c', config_file]
-    app = Application()
-    os.unlink(config_file)
-    return app
+from test_configuration import create_application
 
 
 class TestLogger(unittest.TestCase):
