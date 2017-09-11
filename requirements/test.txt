@@ -1,0 +1,16 @@
+pytest
+pytest-pep8
+pytest-cov
+nose
+mock
+pylint
+#httpretty
+git+https://github.com/melor/HTTPretty.git@py33
+python-coveralls
+unittest2
+backports.functools_lru_cache
+configparser
+singledispatch
+enum34
+coverage==4.0.3
+testfixtures
