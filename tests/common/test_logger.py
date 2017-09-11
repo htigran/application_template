@@ -12,7 +12,7 @@ class TestLogger(unittest.TestCase):
     """
 
     def test_debug(self):
-        """ test debug log level
+        """ Test debug(1) log level
             1) application is created with log level 'debug'
             2) write a debug text in logger and verify that the logger has
                been called with the text
@@ -24,7 +24,7 @@ class TestLogger(unittest.TestCase):
             log_debug_mock.assert_called_with('DEADBEEF')
 
     def test_info(self):
-        """ test info log level
+        """ Test info(2) log level
             1) application is created with log level 'info'
             2) write a debug text in the logger and verify that the logger has
                not been called
@@ -41,7 +41,7 @@ class TestLogger(unittest.TestCase):
             log_info_mock.assert_called_with('DEADBEEF')
 
     def test_warning(self):
-        """ test warning log level
+        """ Test warning(3) log level
             1) application is created with log level 'warning'
             2) write a info text in the logger and verify that the logger has
                not been called
@@ -58,7 +58,7 @@ class TestLogger(unittest.TestCase):
             log_warning_mock.assert_called_with('DEADBEEF')
 
     def test_error(self):
-        """ test info log level
+        """ Test error(4) log level
             1) application is created with log level 'error'
             2) write a warning text in the logger and verify that the logger
                has not been called
@@ -75,7 +75,7 @@ class TestLogger(unittest.TestCase):
             log_error_mock.assert_called_with('DEADBEEF')
 
     def test_critical(self):
-        """ test info log level
+        """ Test critical(5) log level
             1) application is created with log level 'critical'
             2) write an error text in the logger and verify that the logger
                has not been called

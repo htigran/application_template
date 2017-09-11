@@ -5,7 +5,8 @@ from common.configuration import configuration_parser
 from common.logger import create_timed_rotating_log
 
 
-class Application(object):  # pylint: disable=too-few-public-methods
+class Application(object):
+    # pylint: disable=too-few-public-methods
     """ Parses arguments and reads given by -c/--config-file argument config
     """
 

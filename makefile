@@ -1,51 +1,54 @@
 
 
 .PHONY: run
-VENV_DIR := venv
+VENV_DIR := ~/.virtualenvs/application
 ACTIVATE := $(VENV_DIR)/bin/activate
 PIP      := pip
 INSTALLER:= $(shell python -mplatform | grep -qi centos && echo "yum install -y" || echo "apt-get --assume-yes install")
 SHELL    := /bin/bash
+PPATH    := PYTHONPATH=`pwd`/application
+PYTHON   := $(PPATH) python
 
-run:
+run: venv
 	@$(call activate-venv, \
 	    $@, \
-	    "python application/my_app.py -c application/config/my_app.conf")
+	    "$(PYTHON) application/main/application.py -c application/config/application.conf")
 
-venv:
+venv: $(VENV_DIR)
+$(VENV_DIR):
 	sudo $(INSTALLER) python-virtualenv
 	virtualenv $(VENV_DIR)
 	source $(ACTIVATE) \
 	    && $(PIP) install --upgrade setuptools \
-	    && $(PIP) install -r requirements.txt  \
-	    && $(PIP) install -r test-requirements.txt
+	    && $(PIP) install -r requirements/main.txt  \
+	    && $(PIP) install -r requirements/test.txt
 
 test: unit-tests coverage pylint
 
-unit-tests:
+unit-tests: venv
 	@$(call activate-venv, \
 	    $@, \
-	    "PYTHONPATH=`pwd`/application nosetests tests/common/")
+	    "$(PPATH) nosetests -v tests/common/")
 
-coverage:
+coverage: venv
 	@$(call activate-venv, \
 	    $@, \
-	    "coverage run application/my_app.py -c application/config/my_app.conf; \
+	    "$(PPATH) coverage run application/main/application.py -c application/config/application.conf; \
 	     coveralls")
 
-pylint:
+pylint: venv
 	@$(call activate-venv, \
 	    $@, \
-	    "pylint application/common")
+	    "pylint application/common application/main")
 
-clean:
-	rm -fr venv logs
+clean: venv
+	rm -fr $(VENV_DIR) logs
 
 
-vim:
+vim: venv
 	@$(call activate-venv, \
 	    $@, \
-	    "PYTHONPATH=`pwd`/application vim")
+	    "$(PPATH) vim")
 
 
 .PHONY: vim venv run

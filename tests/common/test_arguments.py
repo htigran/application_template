@@ -22,15 +22,15 @@ class ArgumentsTest(unittest.TestCase):
     """
 
     def test_dash_c(self):
-        """ Test cases to test short form of a command line argument parsing
+        """Test short form of command line argument
         """
-        config_file = 'application/config/my_app.conf'
+        config_file = 'application/config/application.conf'
         app = create_application("test_program -c %s" % config_file)
         self.assertEqual(app.args['config_file'], config_file)
 
     def test_dash_dash_config_dash_file(self):
-        """ Test cases to test long form of a command line argument parsing
+        """Test long form of command line argument
         """
-        config_file = 'application/config/my_app.conf'
+        config_file = 'application/config/application.conf'
         app = create_application("test_program --config-file %s" % config_file)
         self.assertEqual(app.args['config_file'], config_file)
