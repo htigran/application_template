@@ -1,4 +1,4 @@
-# PYTHON TEMPLATE APPLICATION
+# PYTHON APPLICATION TEMPLATE
 
 [![Build Status](https://travis-ci.org/htigran/application_template.svg?branch=master)](https://travis-ci.org/htigran/application_template)  [![Coverage Status](https://coveralls.io/repos/github/htigran/application_template/badge.svg?branch=master)](https://coveralls.io/github/htigran/application_template?branch=master)
 
