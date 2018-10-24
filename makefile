@@ -4,7 +4,6 @@
 VENV_DIR := ~/.virtualenvs/application
 ACTIVATE := $(VENV_DIR)/bin/activate
 PIP      := pip
-INSTALLER:= $(shell python -mplatform | grep -qi centos && echo "yum install -y" || echo "apt-get --assume-yes install")
 SHELL    := /bin/bash
 PPATH    := PYTHONPATH=`pwd`/application
 PYTHON   := $(PPATH) python
@@ -16,7 +15,7 @@ run: venv
 
 venv: $(VENV_DIR)
 $(VENV_DIR):
-	sudo $(INSTALLER) python-virtualenv
+	sudo $(PIP) install virtualenv
 	virtualenv $(VENV_DIR)
 	source $(ACTIVATE) \
 	    && $(PIP) install --upgrade setuptools \
