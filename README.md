@@ -1,6 +1,6 @@
 # PYTHON APPLICATION TEMPLATE
 
-[![Build Status](https://travis-ci.org/htigran/application_template.svg?branch=master)](https://travis-ci.org/htigran/application_template)  [![Coverage Status](https://coveralls.io/repos/github/htigran/application_template/badge.svg?branch=master)](https://coveralls.io/github/htigran/application_template?branch=master)
+[![Build Status](https://travis-ci.org/htigran/python-application-template.svg?branch=master)](https://travis-ci.org/htigran/python-application-template)  [![Coverage Status](https://coveralls.io/repos/github/htigran/python-application-template/badge.svg?branch=master)](https://coveralls.io/github/htigran/python-application-template?branch=master)
 
 ## SCOPE
 This is a python application template that can be used out of the box. It comes with inbuilt argument parser, configuration file parser and a log handler.
