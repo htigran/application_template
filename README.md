@@ -4,7 +4,7 @@
 
 ## SCOPE
 This is a python application template that can be used out of the box. It comes with inbuilt argument parser, configuration file parser and a log handler.
-The idea is to have minimalistic starting point while implementing similar python applications.
+The idea is to have minimalistic starting point for implementing similar python applications.
 
 ## FUNCTIONAL REQUIREMENTS
 - [x] Shell get config file path via command line arguments
